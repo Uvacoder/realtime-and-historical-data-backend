@@ -123,7 +123,7 @@ io.on("connection", (socket) => {
           console.log("err" + err);
           res.status(500).send({ Status: "Error", Error: err });
         }
-      }, 2000);
+      }, 5000);
     } else {
       clearInterval(interValID);
     }
