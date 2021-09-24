@@ -132,7 +132,8 @@ io.on("connection", (socket) => {
   });
   socket.on("disconnect", () => {
     console.log("User Disconnected");
-    io.emit("user-disconnected", "NAN");
+    interValID && clearInterval(interValID);
+    //io.emit("user-disconnected", "NAN");
   });
 });
 
