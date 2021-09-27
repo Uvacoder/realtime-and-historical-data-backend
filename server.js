@@ -16,6 +16,7 @@ const rtSavedataRouter = require("./Routers/saveRTdataRouter");
 
 //interval ID
 var interValID;
+var intervalIDArray = [];
 
 const atlas_uri = process.env.ATLAS_URI;
 mongoose.connect(atlas_uri, {
@@ -123,9 +124,13 @@ io.on("connection", (socket) => {
           console.log("err" + err);
           res.status(500).send({ Status: "Error", Error: err });
         }
-      }, 5000);
+      }, 1000);
+      intervalIDArray.push(interValID);
     } else {
-      clearInterval(interValID);
+      intervalIDArray.length > 0 &&
+        intervalIDArray.map((item) => {
+          clearInterval(item);
+        });
     }
 
     console.log(msg);
